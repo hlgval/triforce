@@ -82,7 +82,8 @@ def notifier_ntfy(titre: str, message: str, topic: str) -> None:
         requests.post(
             f"https://ntfy.sh/{topic}",
             data=message.encode("utf-8"),
-            headers={"Title": titre, "Priority": "high", "Tags": "bell"},
+            # La correction est sur la ligne ci-dessous (ajout de .encode("utf-8")) :
+            headers={"Title": titre.encode("utf-8"), "Priority": "high", "Tags": "bell"},
             timeout=10,
         )
     except requests.RequestException as e:
@@ -115,12 +116,12 @@ def stock_cultura(soup: BeautifulSoup) -> bool:
 
 
 PRODUITS: List[Produit] = [
-    Produit(
-        "fnac_switch40",
-        "Switch 2 — 40 ans Zelda — Fnac",
-        "https://www.fnac.com/Console-Nintendo-Switch-2-Edition-Limitee-40eme-anniversaire-The-Legend-of-Zelda/a21424371/w-4",
-        stock_fnac,
-    ),
+   # Produit(
+   #     "fnac_switch40",
+    #    "Switch 2 — 40 ans Zelda — Fnac",
+     #   "https://www.fnac.com/Console-Nintendo-Switch-2-Edition-Limitee-40eme-anniversaire-The-Legend-of-Zelda/a21424371/w-4",
+      #  stock_fnac,
+    #),
     Produit(
         "leclerc_switch40",
         "Switch 2 — 40 ans Zelda — Leclerc",
